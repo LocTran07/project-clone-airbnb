@@ -1,0 +1,6 @@
+export * from './locationReducer'
+export * from './roomReducer'
+export * from './authReducer'
+export * from './userReducer'
+export * from './bookingReducer'
+export * from './commentReducer'
