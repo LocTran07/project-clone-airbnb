@@ -25,7 +25,7 @@ const AdminLayout = () => {
         { label: 'Quản lí thông tin phòng', key: '3', children: <ManageRoom></ManageRoom> },
         { label: 'Quản lí thông tin đặt phòng', key: '4', children: <ManageBooking></ManageBooking> },
     ];
-    if (userLogin.user.role !== 'ADMIN') {
+    if (userLogin?.user.role !== 'ADMIN') {
         alert('vui lòng sử dụng tài khoản quản trị')
         return <Navigate replace to='/'></Navigate>
     }
