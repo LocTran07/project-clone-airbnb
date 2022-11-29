@@ -56,7 +56,7 @@ const DetailUser = () => {
     return (
         <div className='DetailUser pt-[70px]'>
             <div className='container mx-auto mt-20'>
-                <div className='grid md:grid-cols-5'>
+                <div className='grid grid-cols-1 md:grid-cols-5'>
                     <div className='col-span-2 p-20'>
                         <div className='shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] border border-black rounded-lg p-10 flex flex-col justify-evenly gap-10'>
                             <div className='flex flex-col justify-center items-center'>
