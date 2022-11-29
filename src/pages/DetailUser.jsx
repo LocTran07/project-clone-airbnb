@@ -19,7 +19,7 @@ const DetailUser = () => {
     console.log(roomList);
     console.log(bookingByUserId);
     const data = useMemo(() => {
-        if (bookingByUserId.length > 0 && roomList.length > 0) {
+        if (bookingByUserId?.length > 0 && roomList?.length > 0) {
             let data1 = []
             for (let i of bookingByUserId) {
                 const a = roomList?.find(item => {
