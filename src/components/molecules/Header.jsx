@@ -49,7 +49,7 @@ const Header = () => {
 
     return (
         <StyledDiv className="Header">
-            <header className=" dark:bg-gray-800 dark:text-gray-100 fixed z-10 w-full left-0 bg-white shadow-[0_0px_10px_0px_rgba(0,0,0,0.5)]  ">
+            <header className="  fixed z-10 w-full left-0 bg-white shadow-[0_0px_10px_0px_rgba(0,0,0,0.5)]  ">
                 <div className=" w-full container  mx-auto   justify-evenly  flex  md:justify-between  h-[70px] relative">
                     <Link
                         rel="noopener noreferrer"
