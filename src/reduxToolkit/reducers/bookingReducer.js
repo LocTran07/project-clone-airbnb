@@ -9,7 +9,7 @@ import { roomService } from "../../service/roomService";
 export const {reducer:bookingReducer, actions:bookingAction} = createSlice({
     name: 'room',
     initialState:{
-        isPendingBookingByUserId: false, bookingByUserId: null , errBookingByUserId: null,
+        isPendingBookingByUserId: false, bookingByUserId: [] , errBookingByUserId: null,
         isPendingBookingList: false, bookingList: [] , errBookingList: null,
         isPendingPostBooking: false, postBooking: null , errPostBooking: null,
         isPendingGetBookingById: false, getBookingById1: null , errGetBookingById1: null,

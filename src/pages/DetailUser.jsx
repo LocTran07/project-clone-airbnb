@@ -19,7 +19,7 @@ const DetailUser = () => {
     console.log(roomList);
     console.log(bookingByUserId);
     const data = useMemo(() => {
-        if (bookingByUserId.length > 0 && roomList.length > 0) {
+        if (bookingByUserId?.length > 0 && roomList?.length > 0) {
             let data1 = []
             for (let i of bookingByUserId) {
                 const a = roomList?.find(item => {
@@ -130,7 +130,7 @@ const DetailUser = () => {
                         <div>
                             <p className='text-lg '>Xin chào tôi là <span className='text-[#ff5a5f]'> {detailUser?.name}</span></p>
                             <p className='text-lg '>Thông tin phòng đã đặt:</p>
-                            {data.length > 0 && data?.map(item => {
+                            {data?.length > 0 && data?.map(item => {
 
                                 return (
                                     <div className='shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] rounded-lg p-10 mb-5 flex justify-around items-center'>
