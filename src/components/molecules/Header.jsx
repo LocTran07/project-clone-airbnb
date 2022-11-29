@@ -73,7 +73,7 @@ const Header = () => {
                                     onSelect={onSelect}
                                     // onSearch={onSearch}
                                     // onChange={onChange}
-                                    placeholder="Nhập địa điểm"
+                                    placeholder="Nơi đi"
                                     filterOption={true}
 
                                 />
@@ -159,10 +159,10 @@ const StyledDiv = styled.div`
         display: none;
     }
     .STT1 {
-        width:  80px;
+        width:  100px;
     }
     .STT2{
-        width: 170px;
+        width: 180px;
     }
 }
 `

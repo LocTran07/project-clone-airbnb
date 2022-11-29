@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { getBookingByUserId, getDetailUser, postAvatar } from '../reduxToolkit/reducers'
+import { getBookingByUserId, getDetailUser, getRoomList, postAvatar } from '../reduxToolkit/reducers'
 import { Button, Modal, Search, Input } from 'antd';
-
+import _ from 'lodash'
 import moment from 'moment'
 import { useForm } from 'react-hook-form';
 
@@ -15,11 +15,29 @@ const DetailUser = () => {
     // useselector 
     const { detailUser } = useSelector(state => state.userReducer)
     const { bookingByUserId } = useSelector(state => state.bookingReducer)
-    console.log(detailUser);
+    const { roomList } = useSelector(state => state.roomReducer)
+    console.log(roomList);
+    console.log(bookingByUserId);
+    const data = useMemo(() => {
+        if (bookingByUserId.length > 0 && roomList.length > 0) {
+            let data1 = []
+            for (let i of bookingByUserId) {
+                const a = roomList?.find(item => {
+                    return item.id === i.maPhong
+                })
+                console.log(a);
+                const data2 = { ...i, hinhAnh: a?.hinhAnh }
+                data1.push(data2)
+            }
+            return data1
+        }
+    }, [roomList, bookingByUserId])
+
     // useeffect 
     useEffect(() => {
         dispatch(getDetailUser(param.id))
         dispatch(getBookingByUserId(param.id))
+        dispatch(getRoomList())
     }, [])
     // modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,7 +77,7 @@ const DetailUser = () => {
                                         console.log(data);
                                         // tao formdata 
                                         const formData = new FormData()
-                                        formData.append('formFile',data.avatar,data.avatar.name)
+                                        formData.append('formFile', data.avatar, data.avatar.name)
                                         dispatch(postAvatar(formData))
                                     })}
                                     onCancel={handleCancel}>
@@ -112,11 +130,11 @@ const DetailUser = () => {
                         <div>
                             <p className='text-lg '>Xin chào tôi là <span className='text-[#ff5a5f]'> {detailUser?.name}</span></p>
                             <p className='text-lg '>Thông tin phòng đã đặt:</p>
-                            {bookingByUserId?.map(item => {
+                            {data.length > 0 && data?.map(item => {
 
                                 return (
                                     <div className='shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] rounded-lg p-10 mb-5 flex justify-around items-center'>
-                                        <div className='rounded-lg' style={{ height: '100px', width: '150px', backgroundImage: `url(https://a0.muscache.com/im/pictures/38ea32a6-605a-48de-b3ab-149d640026c1.jpg?im_w=720)`, backgroundSize: 'cover', backgroundPosition: 'center', }}>
+                                        <div className='rounded-lg' style={{ height: '100px', width: '150px', backgroundImage: `url(${item.hinhAnh})`, backgroundSize: 'cover', backgroundPosition: 'center', }}>
                                         </div>
                                         <div>
                                             <p className='mb-7'>Mã Phòng: {item.maPhong}</p>
