@@ -73,7 +73,7 @@ const Header = () => {
                                     onSelect={onSelect}
                                     // onSearch={onSearch}
                                     // onChange={onChange}
-                                    placeholder="Nơi đi"
+                                    placeholder="Địa điểm"
                                     filterOption={true}
 
                                 />
@@ -105,7 +105,7 @@ const Header = () => {
                                 if (date1 && date2) {
                                     navigate(`roomlocation/${id}/${date1}/${date2}`)
                                 } else {
-                                    alert('Vui lòng chọn ngày')
+                                    alert('Vui lòng chọn địa điểm và ngày')
                                 }
                             }} className="ml-5 bg-black active:scale-[0.9]" type="primary" shape="circle" icon={<SearchOutlined />} />
                         </div>
