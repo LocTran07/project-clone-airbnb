@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { authService } from '../service/authService'
 import { authAction, login } from '../reduxToolkit/reducers'
+import { replace } from 'lodash'
 
 const Login = () => {
   const hinh = './img/user.webp'
@@ -67,7 +68,8 @@ const Login = () => {
               </div>
               <button className="text-white shadow-lg rounded-full bg-[#ff5a5f] border-0 py-2 px-8 focus:outline-none mt-10 text-lg active:scale-[0.97] ">Đăng nhập</button>
               {errUserLogin && <p style={{ color: ' #ff5a5f' }} className='mt-7 mb-7'>{errUserLogin}</p>}
-              <p className="text-xs text-gray-500 mt-3">Bạn chưa có tài khoản ? Vui lòng bấm <span className='cursor-pointer' style={{ color: ' #ff5a5f' }}>đăng ký</span></p>
+              <p className="text-xs text-gray-500 mt-3">Bạn chưa có tài khoản ? Vui lòng bấm <span
+                onClick={() => { navigate('/register') }} className='cursor-pointer' style={{ color: ' #ff5a5f' }}>đăng ký</span></p>
             </form>
 
           </div>

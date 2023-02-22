@@ -23,7 +23,8 @@ export const {reducer:authReducer, actions:authAction} = createSlice({
             state.errUserLogin = null
         },
         resetSignup: (state,action)=> {
-            state.signup = null
+            state.userSignup = null
+            state.errSignup = null
         },
         logout : (state,action)=> {
             state.userLogin = null

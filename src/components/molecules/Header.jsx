@@ -1,16 +1,12 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { BarsOutlined, SearchOutlined } from "@ant-design/icons";
 import { AutoComplete, Button, DatePicker, Input } from "antd";
-import styled from "styled-components";
+import moment from 'moment';
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { authAction, getLocation } from "../../reduxToolkit/reducers";
-import { SearchOutlined, BarsOutlined } from "@ant-design/icons";
-import moment from 'moment'
-import { USERLOGIN } from "../../utili/setup";
-// import {locationReducer} from '../../reduxToolkit/configStore'
-// const mockVal = (str, repeat = 1) => ({
-//     value: str.repeat(repeat),
-// });
+
 
 const Header = () => {
 

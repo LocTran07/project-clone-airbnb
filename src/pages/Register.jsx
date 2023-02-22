@@ -9,18 +9,18 @@ import { authAction, signup } from '../reduxToolkit/reducers'
 import _ from 'lodash'
 const Register = () => {
   // use effect dua len dau 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  })
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: 'smooth'
+  //   },[]);
+  // })
   const hinh = './img/user.webp'
   // useForm
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
 
   // useSelector
-  const { userLogin, errUserLogin, userSignup } = useSelector(state => state.authReducer)
+  const { userLogin, errSignup, userSignup } = useSelector(state => state.authReducer)
 
   // dispatch 
   const dispatch = useDispatch()
@@ -28,11 +28,18 @@ const Register = () => {
   const navigate = useNavigate()
 
 
+  if (userSignup) {
+    alert('Đăng kí thành công')
+    navigate('/login')
+  }
   // watch 
   const password = watch('password')
   // useeffect 
+  useEffect(() => { })
+  // useeffect 
   useEffect(() => { dispatch(authAction.resetSignup()) }, [])
 
+  console.log(userSignup);
   return (
     <div className='Register'>
 
@@ -67,12 +74,16 @@ const Register = () => {
               </div>
               <div className="relative mb-4">
                 <label className=" text-[#ff5a5f] leading-7 text-sm ">Mật khẩu</label>
-                <input {...register('password', { required: 'Mật khẩu không được bỏ trống' })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                <input type='password' {...register('password', {
+                  required: 'Mật khẩu không được bỏ trống',
+                  minLength: { value: 6, message: '6-12 ký tự' },
+                  maxLength: { value: 12, message: '6-12 ký tự' }
+                })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                 {errors?.password && (<p className=' text-red-400'>{errors.password.message}</p>)}
               </div>
               <div className="relative mb-4">
                 <label className=" text-[#ff5a5f] leading-7 text-sm ">Xác Mật khẩu</label>
-                <input {...register('confirmpassword', { required: 'không được bỏ trống', validate: value => value === password || 'Mật khẩu không trùng khớp' })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                <input  type='password' {...register('confirmpassword', { required: 'không được bỏ trống', validate: value => value === password || 'Mật khẩu không trùng khớp' })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                 {errors?.confirmpassword && (<p className=' text-red-400'>{errors?.confirmpassword.message}</p>)}
               </div>
               <div className="relative mb-4">
@@ -96,17 +107,17 @@ const Register = () => {
                 </select>
                 {errors?.gender && (<p className=' text-red-400'>{errors.gender.message}</p>)}
               </div>
-              <div className="relative mb-4">
+              {/* <div className="relative mb-4">
                 <label className=" text-[#ff5a5f] leading-7 text-sm ">Chức danh</label>
                 <select {...register('role', { required: 'Chức danh không được bỏ trống' })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                   <option value='USER'>Người dùng</option>
                   <option value="ADMIN">Quản lí</option>
                 </select>
                 {errors?.role && (<p className=' text-red-400'>{errors.role.message}</p>)}
-              </div>
+              </div> */}
               <button className="text-white shadow-lg rounded-full bg-[#ff5a5f] border-0 py-2 px-8 focus:outline-none mt-10 text-lg active:scale-[0.97] ">Đăng ký</button>
               <span onClick={() => { navigate('/') }} className='block text-[15px] cursor-pointer text-red-400 mt-5 underline decoration-1'> Quay lại trang chủ</span>
-              {userSignup && (<p className='mb-0 text-xl text-red-400'>Đăng ký thành công </p>)}
+              {errSignup && (<p className='mb-0 text-xl text-red-400'>{errSignup}</p>)}
             </form>
 
           </div>
