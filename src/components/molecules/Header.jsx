@@ -1,16 +1,12 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { BarsOutlined, SearchOutlined } from "@ant-design/icons";
 import { AutoComplete, Button, DatePicker, Input } from "antd";
-import styled from "styled-components";
+import moment from 'moment';
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { authAction, getLocation } from "../../reduxToolkit/reducers";
-import { SearchOutlined, BarsOutlined } from "@ant-design/icons";
-import moment from 'moment'
-import { USERLOGIN } from "../../utili/setup";
-// import {locationReducer} from '../../reduxToolkit/configStore'
-// const mockVal = (str, repeat = 1) => ({
-//     value: str.repeat(repeat),
-// });
+
 
 const Header = () => {
 
@@ -49,7 +45,7 @@ const Header = () => {
 
     return (
         <StyledDiv className="Header">
-            <header className=" dark:bg-gray-800 dark:text-gray-100 fixed z-10 w-full left-0 bg-white shadow-[0_0px_10px_0px_rgba(0,0,0,0.5)]  ">
+            <header className="  fixed z-10 w-full left-0 bg-white shadow-[0_0px_10px_0px_rgba(0,0,0,0.5)]  ">
                 <div className=" w-full container  mx-auto   justify-evenly  flex  md:justify-between  h-[70px] relative">
                     <Link
                         rel="noopener noreferrer"
